@@ -33,7 +33,7 @@ In this lab, we are going to write a Python program which can generate a network
 
 > * Show the screenshot of using iPerf command in Mininet
 
->> ![Screenshot](https://github.com/nctucn/lab2-allen880117/blob/master/Screenshot_iPerf.png)
+>> ![Screenshot_iPerf](https://github.com/nctucn/lab2-allen880117/blob/master/screenshots/Screenshot_iPerf.png)
 ---
 ## Description
 
@@ -91,7 +91,7 @@ In this lab, we are going to write a Python program which can generate a network
 
     2. Check the result after running example code
         > the result won't be same as the one provided by lab2_tasks.pdf
-        
+        > ![Screenshot_example](https://github.com/nctucn/lab2-allen880117/blob/master/screenshots/Screenshot_example.png)
 3. **Topology Generator**
 
 
