@@ -18,6 +18,8 @@ In this lab, we are going to write a Python program which can generate a network
 
 > TODO: 
 > * Describe how to execute your program
+
+    In this lab, I modify the example.py, and create another .py file, 0616309_lab2.py
     
 ```bash
 # Change the directory into /Network_Topology/src/  
