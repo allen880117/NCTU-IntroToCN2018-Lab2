@@ -18,11 +18,14 @@ In this lab, we are going to write a Python program which can generate a network
 
 > TODO: 
 > * Describe how to execute your program
+    
+```diff
+# Change the directory into  /Network_Topology/src/  
+$ cd  /root/Network_Topology/src/ <br>
+# Change to the executable mode of 0616309_lab2.py  
+$ [sudo] chmod +x 0616309_lab2.py
+```
 
-    <font color = "green"> # Change the directory into  /Network_Topology/src/ </font>
-    $ cd  /root/Network_Topology/src/
-    <font color = "green"> # Change to the executable mode of 0616309_lab2.py  </font>
-    $ [sudo] chmod +x 0616309_lab2.py
 > * Show the screenshot of using iPerf command in Mininet
 
 ---
