@@ -18,22 +18,18 @@ In this lab, we are going to write a Python program which can generate a network
 
 > TODO: 
 > * Describe how to execute your program
-
->> In this lab, I modify the example.py, and create another .py file, 0616309_lab2.py
-
-    
->>```bash
->> # Change the directory into /Network_Topology/src/  
->> $ cd /root/Network_Topology/src/
->> # Change to the executable mode of 0616309_lab2.py  
->> $ [sudo] chmod +x 0616309_lab2.py
->> # Run 0616309_lab2.py
->> $ [sudo] ./0616309_lab2.py
->> ```
+    >> In this lab, I modify the example.py, and create another .py file, 0616309_lab2.py  
+    >> ```bash
+    >> # Change the directory into /Network_Topology/src/  
+    >> $ cd /root/Network_Topology/src/
+    >> # Change to the executable mode of 0616309_lab2.py  
+    >> $ [sudo] chmod +x 0616309_lab2.py
+    >> # Run 0616309_lab2.py
+    >> $ [sudo] ./0616309_lab2.py
+    >> ```
 
 > * Show the screenshot of using iPerf command in Mininet
-
->> ![Screenshot_iPerf](https://github.com/nctucn/lab2-allen880117/blob/master/screenshots/Screenshot_iPerf.png)
+    >> ![Screenshot_iPerf](https://github.com/nctucn/lab2-allen880117/blob/master/screenshots/Screenshot_iPerf.png)
 ---
 ## Description
 
@@ -80,6 +76,16 @@ In this lab, we are going to write a Python program which can generate a network
     4. Run Mininet for testing
         > the result is the following image
         > ![Screenshot_mininet](https://github.com/nctucn/lab2-allen880117/blob/master/screenshots/Screenshot_mininet.png)
+        
+        > the first time we execute the mininet, we will face a problem, that is a service didn't start.
+        > ![Screenshot_problem_1](https://github.com/nctucn/lab2-allen880117/blob/master/screenshots/Screenshot_problem_1.png)
+        
+        > to solve the problem, just start the service
+        > ```bash
+        > # Start the service of Open vSwitch
+        > $ [sudo] service openvswitch-switch start
+        > ```
+
 2. **Example of Mininet**
     1. Run the example code
         > usually we don't need sudo here since we use root account
@@ -97,8 +103,26 @@ In this lab, we are going to write a Python program which can generate a network
         > In older version of lab2_tasks.pdf, there will be 4 hosts, but example.py will only generate 2 hosts and 1 switch. <br>
         > The result will be same as the one provided by  the latest version of lab2_tasks.pdf. <br> 
         > ![Screenshot_example](https://github.com/nctucn/lab2-allen880117/blob/master/screenshots/Screenshot_example.png)
-3. **Topology Generator**
 
+    3. The following error may occur when you run example.py or Mininet's program
+        > (I forget how I tigger this problem, but I'm sure that I solve it before)
+        > ```bash
+        > # Run the example code (example.py)
+        > $ [sudo] ./example.py
+        > *** Creating network
+        > ...
+        > Exception: Error creating interface pair (s1-eth1,s2-eth1): RTNETLINK answers: File exists
+        > ```
+
+        > It seems like that we have create the file before, so just clean it up!
+        > ```bash
+        > $ [sudo] mn -c
+        > ```
+
+3. **Topology Generator**
+    1. View the topology you should generate
+        > 16309 % 3 = 1
+        > ![topo1](https://github.com/nctucn/lab2-allen880117/blob/master/src/topo/topo1.png)
 
 4. **Measurement**
 
