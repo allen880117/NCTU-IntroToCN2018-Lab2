@@ -54,29 +54,44 @@ In this lab, we are going to write a Python program which can generate a network
 
 1. **Environment Setup**
     1. Join this lab on GitHub Classroom by using the link provided in lab2_tasks.pdf
-        
-        > * https://classroom.github.com/a/K8gaizQG
+        > https://classroom.github.com/a/K8gaizQG
     
     2. Login to my container using SSH
-        
-        > 1. Open the PieTTY ( Putty is also OK ) and connect to my container
-            >> * IP address : 140.113.195.69
-            >> * Port : 16309
-        > 2. Login as root
-            >> * Login : root
-            >> * Password : cn2018
-        > 3. For protecting my own work
-            
-        >> ```bash
-        >> #Change password
-        >> $ passwd
-        >> Enter new UNIX password: <NewPassword> 
-        >> Retype new UNIX password: <NewPassword>
-        >> ```   
+        1. Open the PieTTY ( Putty is also OK ) and connect to my container
+            > * IP address : 140.113.195.69
+            > * Port : 16309
+        2. Login as root
+            > * Login : root
+            > * Password : cn2018
+        3. For protecting my own work
+            > ```bash
+            > # Change password
+            > $ passwd
+            > Enter new UNIX password: <NewPassword> 
+            > Retype new UNIX password: <NewPassword>
+            > ```   
+
+    3. Clone my GitHub repository to "Network_Topology"
+        > ```bash
+        > # Clone my GitHub repository to "Network_Topology"
+        > $ git clone https://github.com/nctucn/lab2-allen880117.git Network_Topology
+        > ```
 
 2. **Example of Mininet**
+    1. Run the example code
+        > usually we don't need sudo here since we use root account
+        > ```bash
+        > # Change the directory into /Network_Topology/src/
+        > $ cd /root/Network_Topology/src/
+        > # Change to the executable mode of example.py
+        > $ [sudo] chmod +x example.py 
+        > # Run example code (example.py)
+        > $ [sudo] ./example.py
+        > ```
 
-
+    2. Check the result after running example code
+        > the result won't be same as the one provided by lab2_tasks.pdf
+        
 3. **Topology Generator**
 
 
@@ -106,6 +121,7 @@ In this lab, we are going to write a Python program which can generate a network
     * [Cheat Sheet of Markdown Syntax](https://www.markdownguide.org/cheat-sheet)
     * [Vim Tutorial – Tutorialspoint](https://www.tutorialspoint.com/vim/index.htm)
     * [鳥哥的 Linux 私房菜 – 第九章、vim 程式編輯器](http://linux.vbird.org/linux_basic/0310vi.php)
+    * [Markdown 語法說明](https://markdown.tw/)
 
 ---
 ## Contributors
