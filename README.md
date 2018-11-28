@@ -31,7 +31,7 @@ $ [sudo] ./0616309_lab2.py
 ```
 
 > * Show the screenshot of using iPerf command in Mininet
-    ![screenshot]("https://github.com/nctucn/lab2-allen880117/blob/master/Screenshot_iPerf.png")
+    ![image]("https://github.com/nctucn/lab2-allen880117/blob/master/Screenshot_iPerf.png")
 ---
 ## Description
 
