@@ -77,6 +77,7 @@ In this lab, we are going to write a Python program which can generate a network
         > $ git clone https://github.com/nctucn/lab2-allen880117.git Network_Topology
         > ```
 
+    4. Run Mininet for testing
 2. **Example of Mininet**
     1. Run the example code
         > usually we don't need sudo here since we use root account
@@ -90,7 +91,10 @@ In this lab, we are going to write a Python program which can generate a network
         > ```
 
     2. Check the result after running example code
-        > the result won't be same as the one provided by lab2_tasks.pdf
+        > The result won't be same as the one provided by lab2_tasks.pdf(old version). <br>
+        > In older version of lab2_tasks.pdf, there will be 4 hosts. <br>
+        > But example.py will only generate 2 hosts and 1 switch. <br>
+        > The result will be same as the one provided by  the latest version of lab2_tasks.pdf. <br> 
         > ![Screenshot_example](https://github.com/nctucn/lab2-allen880117/blob/master/screenshots/Screenshot_example.png)
 3. **Topology Generator**
 
