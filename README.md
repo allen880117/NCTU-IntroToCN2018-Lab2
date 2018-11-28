@@ -19,19 +19,21 @@ In this lab, we are going to write a Python program which can generate a network
 > TODO: 
 > * Describe how to execute your program
 
-    In this lab, I modify the example.py, and create another .py file, 0616309_lab2.py
+>> In this lab, I modify the example.py, and create another .py file, 0616309_lab2.py
+
     
-```bash
-# Change the directory into /Network_Topology/src/  
-$ cd /root/Network_Topology/src/
-# Change to the executable mode of 0616309_lab2.py  
-$ [sudo] chmod +x 0616309_lab2.py
-# Run 0616309_lab2.py
-$ [sudo] ./0616309_lab2.py
-```
+>>```bash
+>> # Change the directory into /Network_Topology/src/  
+>> $ cd /root/Network_Topology/src/
+>> # Change to the executable mode of 0616309_lab2.py  
+>> $ [sudo] chmod +x 0616309_lab2.py
+>> # Run 0616309_lab2.py
+>> $ [sudo] ./0616309_lab2.py
+>> ```
 
 > * Show the screenshot of using iPerf command in Mininet
-    ![Screenshot](https://github.com/nctucn/lab2-allen880117/blob/master/Screenshot_iPerf.png)
+
+>> ![Screenshot](https://github.com/nctucn/lab2-allen880117/blob/master/Screenshot_iPerf.png)
 ---
 ## Description
 
@@ -51,7 +53,26 @@ $ [sudo] ./0616309_lab2.py
 > * Describe how you finish this work step-by-step in detail
 
 1. **Environment Setup**
-
+    1. Join this lab on GitHub Classroom by using the link provided in lab2_tasks.pdf
+        
+        > * https://classroom.github.com/a/K8gaizQG
+    
+    2. Login to my container using SSH
+        
+        > 1. Open the PieTTY ( Putty is also OK ) and connect to my container
+            >> * IP address : 140.113.195.69
+            >> * Port : 16309
+        > 2. Login as root
+            >> * Login : root
+            >> * Password : cn2018
+        > 3. For protecting my own work
+            
+        >> ```bash
+        >> #Change password
+        >> $ passwd
+        >> Enter new UNIX password: <NewPassword> 
+        >> Retype new UNIX password: <NewPassword>
+        >> ```   
 
 2. **Example of Mininet**
 
