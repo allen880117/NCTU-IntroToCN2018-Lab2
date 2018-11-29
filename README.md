@@ -40,22 +40,32 @@ In this lab, we are going to write a Python program which can generate a network
 
 > TODO:
 > * Describe the meaning of iPerf command you used in detail
-    > ```bash
-    > $ h4 iperf -s -u -i 1 > ./out/result &
-    > $ h2 iperf -c 10.0.0.4 -u -i 1
-    > ```
-        >> | parameter | explanation |
-        >> | --------- | ------------|
-        >> | -s |Run iPerf in server mode. (This will only allow one iperf connection at a time)
-        >> | -c **host** |Run iPerf in client mode, connecting to an iPerf server running on host.
-        >> | -u |Use UDP.
-        >> | -i **time** |Sets the interval time in seconds between periodic bandwidth, jitter, and loss reports. Default is zero, which means no report. 
-        >> | \> **file_path** |Dump the result log to the location you assigned.
-        >> | & |Linux command, put \"&\" at the end of command line , then it will not execute this line immediately but wait the next command line.
+```bash
+$ h4 iperf -s -u -i 1 > ./out/result &
+$ h2 iperf -c 10.0.0.4 -u -i 1
+```
+
+| parameter | explanation |
+| --------- | ------------|
+| -s |Run iPerf in server mode. (This will only allow one iperf connection at a time)
+| -c **host** |Run iPerf in client mode, connecting to an iPerf server running on host.
+| -u |Use UDP.
+| -i **time** |Sets the interval time in seconds between periodic bandwidth, jitter, and loss reports. Default is zero, which means no report. 
+| \> **file_path** |Dump the result log to the location you assigned.
+| & |Linux command, put \"&\" at the end of command line , then it will not execute this line immediately but wait the next command line.
     
-    >so you can translate this two command line
-1.    
-    since mininet preset host ip from 10.0.0.1, the host 4 is 10.0.0.4
+>You can translate this two command line like this \: <br>
+    >> **FIRST** <br>
+    >> Run iPerf in server mode in host 4. <br> 
+    >> Use UDP to transist. <br>
+    >> The time interval of log is 1(s). <br>
+    >> Save the log at ./out/result . <p></p>
+    >> **THEN** <br>
+    >> Run iPerf in client mode in host 2, and connect to host 4 of which ip is 10.0.0.4 . <br>
+    >> Use UDP to transist. <br>
+    >> The time interval of log is 1(s).
+
+> * Miniset set the ip of first host in network to 10.0.0.1, and the ip of second host in network is 10.0.0.2, etc. <br> So the ip of h4 is 10.0.0.4
 
 ### Tasks
 
@@ -202,56 +212,57 @@ In this lab, we are going to write a Python program which can generate a network
         > Switch[0] and host[0] is null, just for adjusting the index of switch and host. <br>
         > Use for loop to create a list of 9 switches and a list of 6 hosts. <br>
 
-    |code|explanation|
-    |----|-----------|
-    |class SingleSwitchTopo( Topo ) | a class that inherit the object "Topo".
-    |self.addSwitch( 'name' ) | create a switch and add it into topo.
-    |self.addHost( 'name' ) | create a host and add it into topo.
-    |self.addLink( A, B, bw(Mbps), delay, loss(%) ) | create a link between two devices A and B and configure the parameter of bandwith, delay, and loss rate. 
-    > Now modify and add some code, to complete other requirements. <br>
-    > for some functions, we need import some module first.
-    ```py
-    '''
-    Remember to import the followin module first!
-    '''
-    from mininet.util import dumpNodeConnections
-    from mininet.cli  import CLI
-    ```
-        
-    ```py
-    '''
-    Create and test a simple network
-    '''
-    def simpleTest():
-        # Create a topology with 6 hosts and 9 swithces //topo1.png
-        topo = SingleSwitchTopo()
-        # Create and manage a network with a OvS controller and use TCLink
-        net = Mininet(
-            topo = topo, 
-            controller = OVSController,
-            link = TCLink)
-        # Start a network
-         net.start()
-         # Test connectivity by trying to have all nodes ping each other
-        print("Testing network connectivity")
-        net.pingAll()
+        |code|explanation|
+        |----|-----------|
+        |class SingleSwitchTopo( Topo ) | a class that inherit the object "Topo".
+        |self.addSwitch( 'name' ) | create a switch and add it into topo.
+        |self.addHost( 'name' ) | create a host and add it into topo.
+        |self.addLink( A, B, bw(Mbps), delay, loss(%) ) | create a link between two devices A and B and configure the parameter of bandwith, delay, and loss rate. 
+        > Now modify and add some code, to complete other requirements. <br>
+        > for some functions, we need import some module first.
+        ```py
+        '''
+        Remember to import the followin module first!
+        '''
+        from mininet.util import dumpNodeConnections
+        from mininet.cli  import CLI
+        ```
+            
+        ```py
+        '''
+        Create and test a simple network
+        '''
+        def simpleTest():
+            # Create a topology with 6 hosts and 9 swithces //topo1.png
+            topo = SingleSwitchTopo()
+            # Create and manage a network with a OvS controller and use TCLink
+            net = Mininet(
+                topo = topo, 
+                controller = OVSController,
+                link = TCLink)
+            # Start a network
+            net.start()
+            # Test connectivity by trying to have all nodes ping each other
+            print("Testing network connectivity")
+            net.pingAll()
 
-        # Dump every hosts' and switches' connections
-        dumpNodeConnections(net.hosts)
-        dumpNodeConnections(net.switches)
+            # Dump every hosts' and switches' connections
+            dumpNodeConnections(net.hosts)
+            dumpNodeConnections(net.switches)
 
-        # Add the following code and do NOT use net.stop()
-        CLI(net)
-        # Stop a network
-        # net.stop()
-    ```
-    > Originally, the function "simpleTest()" in example.py has "net.stop()" in the end of function. <br>
-    > However, we can't let the network stop, since we have other work have to do with this network, so delete "net.stop()".
-    > |code|explanation|
-    > |----|-----------| 
-    > |dumpNodeConnections(net.hosts) | dump hosts' connections in the "net" network.
-    > |dumpNodeConnections(net.switches) | dump switches' connections in the "net" network.
-    > | CLI(net) | enter in Mininet's CLI mode with "net" network.
+            # Add the following code and do NOT use net.stop()
+            CLI(net)
+            # Stop a network
+            # net.stop()
+        ```
+        > Originally, the function "simpleTest()" in example.py has "net.stop()" in the end of function. <br>
+        > However, we can't let the network stop, since we have other work have to do with this network, so delete "net.stop()".
+
+        |code|explanation|
+        |----|-----------| 
+        |dumpNodeConnections(net.hosts) | dump hosts' connections in the "net" network.
+        |dumpNodeConnections(net.switches) | dump switches' connections in the "net" network.
+        | CLI(net) | enter in Mininet's CLI mode with "net" network.
 
 4. **Measurement**
 
