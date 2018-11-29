@@ -201,57 +201,57 @@ In this lab, we are going to write a Python program which can generate a network
         > Two list, "switch[]" and "host[]", are the set of switches and hosts. <br>
         > Switch[0] and host[0] is null, just for adjusting the index of switch and host. <br>
         > Use for loop to create a list of 9 switches and a list of 6 hosts. <br>
-        > |code|explanation|
-        > |----|-----------|
-        > |class SingleSwitchTopo( Topo ) | a class that inherit the object "Topo". <br>
-        > |self.addSwitch( 'name' ) | create a switch and add it into topo. <br>
-        > |self.addHost( 'name' ) | create a host and add it into topo. <br>
-        > |self.addLink( A, B, bw(Mbps), delay, loss(%) ) | create a link between two devices A and B and configure the parameter of bandwith, delay, and loss rate. 
 
-        > Now modify and add some code, to complete other requirements. <br>
-        > for some functions, we need import some module first.
-        ```py
-        '''
-        Remember to import the followin module first!
-        '''
-        from mininet.util import dumpNodeConnections
-        from mininet.cli  import CLI
-        ```
+    |code|explanation|
+    |----|-----------|
+    |class SingleSwitchTopo( Topo ) | a class that inherit the object "Topo".
+    |self.addSwitch( 'name' ) | create a switch and add it into topo.
+    |self.addHost( 'name' ) | create a host and add it into topo.
+    |self.addLink( A, B, bw(Mbps), delay, loss(%) ) | create a link between two devices A and B and configure the parameter of bandwith, delay, and loss rate. 
+    > Now modify and add some code, to complete other requirements. <br>
+    > for some functions, we need import some module first.
+    ```py
+    '''
+    Remember to import the followin module first!
+    '''
+    from mininet.util import dumpNodeConnections
+    from mininet.cli  import CLI
+    ```
         
-        ```py
-        '''
-        Create and test a simple network
-        '''
-        def simpleTest():
-            # Create a topology with 6 hosts and 9 swithces //topo1.png
-            topo = SingleSwitchTopo()
-            # Create and manage a network with a OvS controller and use TCLink
-            net = Mininet(
-                topo = topo, 
-                controller = OVSController,
-                link = TCLink)
-            # Start a network
-            net.start()
-            # Test connectivity by trying to have all nodes ping each other
-            print("Testing network connectivity")
-            net.pingAll()
+    ```py
+    '''
+    Create and test a simple network
+    '''
+    def simpleTest():
+        # Create a topology with 6 hosts and 9 swithces //topo1.png
+        topo = SingleSwitchTopo()
+        # Create and manage a network with a OvS controller and use TCLink
+        net = Mininet(
+            topo = topo, 
+            controller = OVSController,
+            link = TCLink)
+        # Start a network
+         net.start()
+         # Test connectivity by trying to have all nodes ping each other
+        print("Testing network connectivity")
+        net.pingAll()
 
-            # Dump every hosts' and switches' connections
-            dumpNodeConnections(net.hosts)
-            dumpNodeConnections(net.switches)
+        # Dump every hosts' and switches' connections
+        dumpNodeConnections(net.hosts)
+        dumpNodeConnections(net.switches)
 
-            # Add the following code and do NOT use net.stop()
-            CLI(net)
-            # Stop a network
-            # net.stop()
-        ```
-        > Originally, the function "simpleTest()" in example.py has "net.stop()" in the end of function. <br>
-        > However, we can't let the network stop, since we have other work have to do with this network, so delete "net.stop()".
-        > |code|explanation|
-        > |----|-----------| 
-        > |dumpNodeConnections(net.hosts) | dump hosts' connections in the "net" network.
-        > |dumpNodeConnections(net.switches) | dump switches' connections in the "net" network.
-        > | CLI(net) | enter in Mininet's CLI mode with "net" network.
+        # Add the following code and do NOT use net.stop()
+        CLI(net)
+        # Stop a network
+        # net.stop()
+    ```
+    > Originally, the function "simpleTest()" in example.py has "net.stop()" in the end of function. <br>
+    > However, we can't let the network stop, since we have other work have to do with this network, so delete "net.stop()".
+    > |code|explanation|
+    > |----|-----------| 
+    > |dumpNodeConnections(net.hosts) | dump hosts' connections in the "net" network.
+    > |dumpNodeConnections(net.switches) | dump switches' connections in the "net" network.
+    > | CLI(net) | enter in Mininet's CLI mode with "net" network.
 
 4. **Measurement**
 
