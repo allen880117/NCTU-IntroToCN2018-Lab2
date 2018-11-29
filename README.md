@@ -50,7 +50,7 @@ In this lab, we are going to write a Python program which can generate a network
 1. **Environment Setup**
     1. Join this lab on GitHub Classroom by using the link provided in lab2_tasks.pdf
         > https://classroom.github.com/a/K8gaizQG
-    
+
     2. Login to my container using SSH
         1. Open the PieTTY ( Putty is also OK ) and connect to my container
             > * IP address : 140.113.195.69
@@ -64,7 +64,7 @@ In this lab, we are going to write a Python program which can generate a network
             > $ passwd
             > Enter new UNIX password: <NewPassword> 
             > Retype new UNIX password: <NewPassword>
-            > ```   
+            > ```
 
     3. Clone my GitHub repository to "Network_Topology"
         > ```bash
@@ -75,10 +75,10 @@ In this lab, we are going to write a Python program which can generate a network
     4. Run Mininet for testing
         > the result is the following image
         > ![Screenshot_mininet](https://github.com/nctucn/lab2-allen880117/blob/master/screenshots/Screenshot_mininet.png)
-        
+
         > the first time we execute the mininet, we will face a problem, that is a service didn't start.
         > ![Screenshot_problem_1](https://github.com/nctucn/lab2-allen880117/blob/master/screenshots/Screenshot_problem_1.png)
-        
+
         > to solve the problem, just start the service
         > ```bash
         > # Start the service of Open vSwitch
@@ -119,11 +119,123 @@ In this lab, we are going to write a Python program which can generate a network
 
 3. **Topology Generator**
     1. View the topology you should generate
-        > 16309 % 3 = 1
+        > * 16309 % 3 = 1, so I should generate the topoplogy of topo1.png.
         > ![topo1](https://github.com/nctucn/lab2-allen880117/blob/master/src/topo/topo1.png)
 
-4. **Measurement**
+    2. Generate the topology via Mininet
+        > Refer to example.py
+        ```py
+        '''
+        Single switch connected to n hosts.
+        '''
+        class SingleSwitchTopo(Topo):
+            def build(self, n = 2):
+                # Add a switch to a topology
+                switch = self.addSwitch('s1')
+                # Add the host and link to a topology
+                for h in range(n):
+                    # Add a host to a topology
+                    host = self.addHost('h%s' % (h + 1))
+                    # Add a bidirectional link to a topology
+                    self.addLink(
+                        host, 
+                        switch, 
+                        bw = 10, 
+                        delay = '5ms', 
+                        loss = 0)
+        ```
+        > We can modify this class and its function to create the topo
+        ```py
+        '''
+        SingleSwitchTopo
+        modified it to generate 9 switches and 6 hosts
+        and link them as topo1.png
+        '''
+        class SingleSwitchTopo(Topo):
+            def build(self):
+                # Add 9 switches to a topology
+                switch = []
+                for num in range(10): #0~9
+                    if( num == 0 ):
+                        switch.append( 'NULL' )
+                    else:
+                        switch.append( self.addSwitch('s%s' % num ) )
+                
+                # Add 6 hosts to a topology
+                host = []
+                for h in range(7): #0~6
+                    if( h == 0 ):
+                        host.append( 'NULL' )
+                    else:
+                        host.append( self.addHost('h%s' % h) )
 
+                # Add links to a topology
+                self.addLink( host[1], switch[1], bw = 12, delay = '6ms', loss = 2)
+                self.addLink( switch[1], switch[8], bw = 20, delay = '7ms', loss = 15)
+                self.addLink( switch[6], host[2], bw = 18, delay = '2ms', loss = 3)
+                self.addLink( switch[4], host[5], bw = 14, delay = '5ms', loss = 2)
+                self.addLink( switch[8], switch[4], bw = 23, delay = '6ms', loss = 10)
+                self.addLink( switch[8], switch[2], bw = 25, delay = '6ms', loss = 14)
+                self.addLink( switch[8], switch[6], bw = 30, delay = '1ms', loss = 12)
+                self.addLink( switch[2], switch[9], bw = 30, delay = '3ms', loss = 18)
+                self.addLink( switch[9], switch[7], bw = 33, delay = '8ms', loss = 10)
+                self.addLink( switch[5], host[6], bw = 15, delay = '4ms', loss = 3)
+                self.addLink( switch[9], switch[5], bw = 30, delay = '3ms', loss = 20)
+                self.addLink( switch[3], switch[9], bw = 35, delay = '2ms', loss = 17)
+                self.addLink( switch[7], host[3], bw = 18, delay = '6ms', loss = 6)
+                self.addLink( host[4], switch[3], bw = 13, delay = '3ms', loss = 5)
+        ```
+        > Two list, "switch[]" and "host[]", are the set of switches and hosts. <br>
+        > Switch[0] and host[0] is null, just for adjusting the index of switch and host. <br>
+        > * self.addSwitch( 'name' ) : create a switch and add it into topo. <br>
+        > * self.addHost( 'name' ) : create a host and add it into topo. <br>
+        > * self.addLink( A, B, bw(Mbps), delay, loss(%) ) : create a link between two devices A and B and configure the parameter of bandwith, delay, and loss rate. 
+
+        > Now modify and add some code, to complete other requirements. <br>
+        > for some functions, we need import some module first.
+        ```py
+        '''
+        Remember to import the followin module first!
+        '''
+        from mininet.util import dumpNodeConnections
+        from mininet.cli  import CLI
+        ```
+        
+        ```py
+        '''
+        Create and test a simple network
+        '''
+        def simpleTest():
+            # Create a topology with 6 hosts and 9 swithces //topo1.png
+            topo = SingleSwitchTopo()
+            # Create and manage a network with a OvS controller and use TCLink
+            net = Mininet(
+                topo = topo, 
+                controller = OVSController,
+                link = TCLink)
+            # Start a network
+            net.start()
+            # Test connectivity by trying to have all nodes ping each other
+            print("Testing network connectivity")
+            net.pingAll()
+
+            # Dump every hosts' and switches' connections
+            dumpNodeConnections(net.hosts)
+            dumpNodeConnections(net.switches)
+
+            # Add the following code and do NOT use net.stop()
+            CLI(net)
+            # Stop a network
+            # net.stop()
+        ```
+        > Originally, the function "simpleTest()" in example.py has "net.stop()" in the end of function. <br>
+        > However, we can't let the network stop, since we have other work have to do with this network, so delete "net.stop()".
+        > * dumpNodeConnections(net.hosts) : dump hosts' connections in the "net" network. <br>
+        > * dumpNodeConnections(net.switches) : dump switches' connections in the "net" network. <br>
+        > * CLI(net) : enter in Mininet's CLI mode with "net" network.
+
+4. **Measurement**
+        
 ---
 ## References
 
