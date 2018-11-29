@@ -87,7 +87,6 @@ In this lab, we are going to write a Python program which can generate a network
 
 2. **Example of Mininet**
     1. Run the example code
-        > usually we don't need sudo here since we use root account
         > ```bash
         > # Change the directory into /Network_Topology/src/
         > $ cd /root/Network_Topology/src/
