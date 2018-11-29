@@ -55,15 +55,15 @@ $ h2 iperf -c 10.0.0.4 -u -i 1
 | & |Linux command, put \"&\" at the end of command line , then it will not execute this line immediately but wait the next command line.
     
 >You can translate this two command line like this \: <br>
-    >> **FIRST** <br>
-    >> Run iPerf in server mode in host 4. <br> 
-    >> Use UDP to transist. <br>
-    >> The time interval of log is 1(s). <br>
-    >> Save the log at ./out/result . <p></p>
-    >> **THEN** <br>
-    >> Run iPerf in client mode in host 2, and connect to host 4 of which ip is 10.0.0.4 . <br>
-    >> Use UDP to transist. <br>
-    >> The time interval of log is 1(s).
+>> **FIRST** <br>
+>> Run iPerf in server mode in host 4. <br> 
+>> Use UDP to transist. <br>
+>> The time interval of log is 1(s). <br>
+>> Save the log at ./out/result . <p></p>
+>> **THEN** <br>
+>> Run iPerf in client mode in host 2, and connect to host 4 of which ip is 10.0.0.4 . <br>
+>> Use UDP to transist. <br>
+>> The time interval of log is 1(s).
 
 > * Miniset set the ip of first host in network to 10.0.0.1, and the ip of second host in network is 10.0.0.2, etc. <br> So the ip of h4 is 10.0.0.4
 
