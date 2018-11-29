@@ -15,7 +15,6 @@ In this lab, we are going to write a Python program which can generate a network
 
 ---
 ## Execution
-
 > TODO: 
 > * Describe how to execute your program  
     >> ```bash
@@ -41,6 +40,22 @@ In this lab, we are going to write a Python program which can generate a network
 
 > TODO:
 > * Describe the meaning of iPerf command you used in detail
+    > ```bash
+    > $ h4 iperf -s -u -i 1 > ./out/result &
+    > $ h2 iperf -c 10.0.0.4 -u -i 1
+    > ```
+        >> | parameter | explanation |
+        >> | --------- | ------------|
+        >> | -s |Run iPerf in server mode. (This will only allow one iperf connection at a time)
+        >> | -c **host** |Run iPerf in client mode, connecting to an iPerf server running on host.
+        >> | -u |Use UDP.
+        >> | -i **time** |Sets the interval time in seconds between periodic bandwidth, jitter, and loss reports. Default is zero, which means no report. 
+        >> | \> **file_path** |Dump the result log to the location you assigned.
+        >> | & |Linux command, put \"&\" at the end of command line , then it will not execute this line immediately but wait the next command line.
+    
+    >so you can translate this two command line
+1.    
+    since mininet preset host ip from 10.0.0.1, the host 4 is 10.0.0.4
 
 ### Tasks
 
@@ -97,13 +112,11 @@ In this lab, we are going to write a Python program which can generate a network
         > ```
 
     2. Check the result after running example code
-        > The result won't be same as the one provided by lab2_tasks.pdf(old version). <br>
-        > In older version of lab2_tasks.pdf, there will be 4 hosts, but example.py will only generate 2 hosts and 1 switch. <br>
-        > The result will be same as the one provided by  the latest version of lab2_tasks.pdf. <br> 
+        > The result will be same as the one provided by the latest version of lab2_tasks.pdf. <br> 
         > ![Screenshot_example](https://github.com/nctucn/lab2-allen880117/blob/master/screenshots/Screenshot_example.png)
 
     3. The following error may occur when you run example.py or Mininet's program
-        > (I forget how I tigger this problem, but I'm sure that I solve it before)
+        > (I forget how I tigger this problem, but I'm sure that I met it when doing task)
         > ```bash
         > # Run the example code (example.py)
         > $ [sudo] ./example.py
@@ -187,9 +200,13 @@ In this lab, we are going to write a Python program which can generate a network
         ```
         > Two list, "switch[]" and "host[]", are the set of switches and hosts. <br>
         > Switch[0] and host[0] is null, just for adjusting the index of switch and host. <br>
-        > * self.addSwitch( 'name' ) : create a switch and add it into topo. <br>
-        > * self.addHost( 'name' ) : create a host and add it into topo. <br>
-        > * self.addLink( A, B, bw(Mbps), delay, loss(%) ) : create a link between two devices A and B and configure the parameter of bandwith, delay, and loss rate. 
+        > Use for loop to create a list of 9 switches and a list of 6 hosts. <br>
+        > |code|explanation|
+        > |----|-----------|
+        > |class SingleSwitchTopo( Topo ) | a class that inherit the object "Topo". <br>
+        > |self.addSwitch( 'name' ) | create a switch and add it into topo. <br>
+        > |self.addHost( 'name' ) | create a host and add it into topo. <br>
+        > |self.addLink( A, B, bw(Mbps), delay, loss(%) ) | create a link between two devices A and B and configure the parameter of bandwith, delay, and loss rate. 
 
         > Now modify and add some code, to complete other requirements. <br>
         > for some functions, we need import some module first.
@@ -230,12 +247,14 @@ In this lab, we are going to write a Python program which can generate a network
         ```
         > Originally, the function "simpleTest()" in example.py has "net.stop()" in the end of function. <br>
         > However, we can't let the network stop, since we have other work have to do with this network, so delete "net.stop()".
-        > * dumpNodeConnections(net.hosts) : dump hosts' connections in the "net" network. <br>
-        > * dumpNodeConnections(net.switches) : dump switches' connections in the "net" network. <br>
-        > * CLI(net) : enter in Mininet's CLI mode with "net" network.
+        > |code|explanation|
+        > |----|-----------| 
+        > |dumpNodeConnections(net.hosts) | dump hosts' connections in the "net" network.
+        > |dumpNodeConnections(net.switches) | dump switches' connections in the "net" network.
+        > | CLI(net) | enter in Mininet's CLI mode with "net" network.
 
 4. **Measurement**
-        
+
 ---
 ## References
 
@@ -261,7 +280,8 @@ In this lab, we are going to write a Python program which can generate a network
     * [Vim Tutorial – Tutorialspoint](https://www.tutorialspoint.com/vim/index.htm)
     * [鳥哥的 Linux 私房菜 – 第九章、vim 程式編輯器](http://linux.vbird.org/linux_basic/0310vi.php)
     * [Markdown 語法說明](https://markdown.tw/)
-
+    * [iPerf](https://iperf.fr/iperf-doc.php)
+    * [CN18 lab2(Youtube)](https://youtu.be/09HHvY9FSQM)
 ---
 ## Contributors
 
