@@ -65,7 +65,7 @@ $ h2 iperf -c 10.0.0.4 -u -i 1
 >> Use UDP to transist. <br>
 >> The time interval of log is 1(s).
 
-> * Miniset set the ip of first host in network to 10.0.0.1, and the ip of second host in network is 10.0.0.2, etc. <br> So the ip of h4 is 10.0.0.4
+> * Miniset set the ip of first host in network to 10.0.0.1, and the ip of second host in network is 10.0.0.2, etc. <br> So the ip of h4 is 10.0.0.4 .
 
 ### Tasks
 
