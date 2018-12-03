@@ -54,7 +54,7 @@ class MyOwnSwitchTopo(Topo) :
         self.addLink( h1, s1, bw = 18, delay = '6ms', loss = 2)
 ```
 * "MyOwnSwitchTopo" 
-* * is a class defined by ourselves which inherits the class "mininet.topo.Topo".
+* * is a class which is defined by ourselves and inherits the class "mininet.topo.Topo".
 * "def build(self)" 
 * * override the function "mininet.topo.Topo.build()" to build my own topo.
 * "self.addSwitch('s1')" 
