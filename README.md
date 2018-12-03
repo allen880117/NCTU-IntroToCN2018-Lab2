@@ -35,7 +35,28 @@ In this lab, we are going to write a Python program which can generate a network
 
 > TODO:
 > * Describe the meaning of Mininet API in Python you used in detail
-
+```py
+from mininet.net  import Mininet
+from mininet.topo import Topo
+from mininet.node import OVSController
+from mininet.link import TCLink
+from mininet.util import dumpNodeConnections
+from mininet.log  import setLogLevel
+from mininet.cli  import CLI    
+```
+* All the module of mininet we import
+```py
+class SingleSwitchTopo(Topo)
+```
+* "SingleSwitchTopo" is a class defined by ourselves.
+* "SingleSwitchTopo" inherits the class "Topo" of "mininet.topo".
+* Actually, the name "SingleSwitchTopo" is not described well, but I'm so lazy, that I don't want to change the class name, so it remains its old name. 
+```py
+self.addSwitch('s1')
+self.addHost('h1')
+self.addLink( h1, s1, bw = 18, delay ='6ms', loss = 2)
+```
+* 
 ### iPerf Commands
 
 > TODO:
@@ -309,6 +330,7 @@ $ h2 iperf -c 10.0.0.4 -u -i 1
 
 * [YOUR_NAME](YOUR_GITHUB_LINK)
 * [David Lu](https://github.com/yungshenglu)
+* [allen880117](https://github.com/allen880117)
 
 ---
 ## License

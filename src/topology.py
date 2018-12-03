@@ -9,7 +9,7 @@ from mininet.log import setLogLevel
 '''
 Remember to import the followin module first!
 '''
-from mininet.util import dumpNodeConnections
+#from mininet.util import dumpNodeConnections
 from mininet.cli  import CLI
 
 '''
@@ -17,7 +17,7 @@ SingleSwitchTopo
 modified it to generate 9 switches and 6 hosts
 and link them as topo1.png
 '''
-class SingleSwitchTopo(Topo):
+class MyOwnSwitchTopo(Topo):
 	def build(self):
 		# Add 9 switches to a topology
 		switch = []
@@ -56,7 +56,7 @@ Create and test a simple network
 '''
 def simpleTest():
     # Create a topology with 6 hosts and 9 swithces //topo1.png
-    topo = SingleSwitchTopo()
+    topo = MyOwnSwitchTopo()
     # Create and manage a network with a OvS controller and use TCLink
     net = Mininet(
         topo = topo, 
