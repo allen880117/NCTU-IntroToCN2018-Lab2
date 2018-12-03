@@ -47,24 +47,20 @@ from mininet.cli  import CLI
 ```
 * All the module of mininet we import.
 ```py
-class MyOwnSwitchTopo(Topo)
+class MyOwnSwitchTopo(Topo) :
+    def build(self) : 
+        self.addSwitch('s1')
+        self.addHost('h1')
+        self.addLink( h1, s1, bw = 18, delay = '6ms', loss = 2)
 ```
 * "MyOwnSwitchTopo" is a class defined by ourselves.
 * "MyOwnSwitchTopo" inherits the class "mininet.topo.Topo".
-* Actually, the "SingleSwitchTopo" was a pre-defined class in "mininet.topo".
-```py
-def build(self)
-```
-* Override the function "mininet.topo.Topo.build()" to build my own topo.
-```py
-self.addSwitch('s1')
-self.addHost('h1')
-self.addLink( h1, s1, bw = 18, delay = '6ms', loss = 2)
-```
+* "def build(self)" override the function "mininet.topo.Topo.build()" to build my own topo.
 * "self.addSwitch('s1')" add a switch named 's1' into topo.
 * "self.addHost('h1')" add a host named 'h1' into topo.
 * "self.addLink(node1, node2, bw = 18, delay = '6ms', loss = 2)" add a link between node1 and node2 in topo with bandwith is 18 mbps, delay is 6ms, and loss rate is 2%.
-* All of three functionis are class function of "mininet.topo.Topo".
+* All of three "add" functions are class function of "mininet.topo.Topo".
+* Actually, the "SingleSwitchTopo" was a pre-defined class in "mininet.topo".
 ```py
 topo = MyOwnSwitchTopo()
 ``` 
