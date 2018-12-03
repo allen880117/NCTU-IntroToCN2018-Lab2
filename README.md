@@ -265,7 +265,15 @@ $ h2 iperf -c 10.0.0.4 -u -i 1
         | CLI(net) | enter in Mininet's CLI mode with "net" network.
 
 4. **Measurement**
-
+    1. Use the iPerf command to measure the topology you built.
+        > My own topology is topo1.png
+        ```bash
+        $ h4 iperf -s -u -i 1 > ./out/result &
+        $ h2 iperf -c 10.0.0.4 -u -i 
+        ```
+    2. The expected result from the topo1.png
+        > The following image is the result after running iPerf command, the expected result of packet loss is around 51% to 55%, so the result is same as expected.<br>
+        > ![Screenshot_iPerf](https://github.com/nctucn/lab2-allen880117/blob/master/screenshots/Screenshot_iPerf.png)
 ---
 ## References
 
