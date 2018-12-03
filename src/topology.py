@@ -7,13 +7,13 @@ from mininet.link import TCLink
 from mininet.util import dumpNodeConnections
 from mininet.log import setLogLevel
 '''
-Remember to import the followin module first!
+Remember to import the following module first!
 '''
 #from mininet.util import dumpNodeConnections
 from mininet.cli  import CLI
 
 '''
-SingleSwitchTopo
+MyOwnSwitchTopo
 modified it to generate 9 switches and 6 hosts
 and link them as topo1.png
 '''

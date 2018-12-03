@@ -16,7 +16,8 @@ In this lab, we are going to write a Python program which can generate a network
 ---
 ## Execution
 > TODO: 
-> * Describe how to execute your program  
+> * Describe how to execute your program 
+    >> Remember install Python and mininet package first.
     >> ```bash
     >> # Change the directory into /Network_Topology/src/  
     >> $ cd /root/Network_Topology/src/
@@ -44,19 +45,72 @@ from mininet.util import dumpNodeConnections
 from mininet.log  import setLogLevel
 from mininet.cli  import CLI    
 ```
-* All the module of mininet we import
+* All the module of mininet we import.
 ```py
-class SingleSwitchTopo(Topo)
+class MyOwnSwitchTopo(Topo)
 ```
-* "SingleSwitchTopo" is a class defined by ourselves.
-* "SingleSwitchTopo" inherits the class "Topo" of "mininet.topo".
-* Actually, the name "SingleSwitchTopo" is not described well, but I'm so lazy, that I don't want to change the class name, so it remains its old name. 
+* "MyOwnSwitchTopo" is a class defined by ourselves.
+* "MyOwnSwitchTopo" inherits the class "mininet.topo.Topo".
+* Actually, the "SingleSwitchTopo" was a pre-defined class in "mininet.topo".
+```py
+def build(self)
+```
+* Override the function "mininet.topo.Topo.build()" to build my own topo.
 ```py
 self.addSwitch('s1')
 self.addHost('h1')
-self.addLink( h1, s1, bw = 18, delay ='6ms', loss = 2)
+self.addLink( h1, s1, bw = 18, delay = '6ms', loss = 2)
 ```
-* 
+* "self.addSwitch('s1')" add a switch named 's1' into topo.
+* "self.addHost('h1')" add a host named 'h1' into topo.
+* "self.addLink(node1, node2, bw = 18, delay = '6ms', loss = 2)" add a link between node1 and node2 in topo with bandwith is 18 mbps, delay is 6ms, and loss rate is 2%.
+* All of three functionis are class function of "mininet.topo.Topo".
+```py
+topo = MyOwnSwitchTopo()
+``` 
+* Create my own topology "topo".
+```py
+net = Mininet(
+    topo = topo, 
+    controller = OVSController,
+    link = TCLink)
+```
+* "Mininet" is a class from "mininet.net".
+* Create a network of which topology is "topo".
+* This network, "net", is managed by a controller, "OVSController"(mininet.node.OVSController).
+* This network, "net",uses "TCLink"(mininet.link.TCLink).
+```py
+net.start()
+```
+* Start the network, "net".
+* This is a class function of "mininet.net.Mininet".
+```py
+net.stop()
+```
+* Stop the network, "net".
+* Since we have to use CLI mode to do other work, we don't need this function here.
+* This is a class function of "mininet.net.Mininet".
+```py
+net.pingALL()
+```
+* Test connectivity by trying to have all nodes ping each other.
+* This is a class function of "mininet.net.Mininet".
+```py
+dumpNodeConnections(net.host)
+dumpNodeConnections(net.switches)
+```
+* Dump every hosts' and switches' connections.
+* "dumpNodeConnections( nodes )" is a function from "mininet.util", and we can use it to dump the information of connections between nodes.
+```py
+CLI(net)
+```
+* Start and run interactive or batch mode CLI with "Mininet network object", here is the network we create, "net".
+* This is a function from "mininet.cli"
+```py
+setLogLevel('info')
+```
+* Tell mininet to print useful information.
+* This function is from "mininet.log".
 ### iPerf Commands
 
 > TODO:
@@ -95,7 +149,7 @@ $ h2 iperf -c 10.0.0.4 -u -i 1
 
 1. **Environment Setup**
     1. Join this lab on GitHub Classroom by using the link provided in lab2_tasks.pdf
-        > https://classroom.github.com/a/K8gaizQG
+        > [NCTU CN](https://classroom.github.com/a/K8gaizQG)
 
     2. Login to my container using SSH
         1. Open the PieTTY ( Putty is also OK ) and connect to my container
@@ -191,11 +245,11 @@ $ h2 iperf -c 10.0.0.4 -u -i 1
         > We can modify this class and its function to create the topo
         ```py
         '''
-        SingleSwitchTopo
+        MyOwnSwitchTopo
         modified it to generate 9 switches and 6 hosts
         and link them as topo1.png
         '''
-        class SingleSwitchTopo(Topo):
+        class MyOwnSwitchTopo(Topo):
             def build(self):
                 # Add 9 switches to a topology
                 switch = []
@@ -235,7 +289,7 @@ $ h2 iperf -c 10.0.0.4 -u -i 1
 
         |code|explanation|
         |----|-----------|
-        |class SingleSwitchTopo( Topo ) | a class that inherit the object "Topo".
+        |class MyOwnSwitchTopo( Topo ) | a class that inherit the object "Topo" in "mininet.topo".
         |self.addSwitch( 'name' ) | create a switch and add it into topo.
         |self.addHost( 'name' ) | create a host and add it into topo.
         |self.addLink( A, B, bw(Mbps), delay, loss(%) ) | create a link between two devices A and B and configure the parameter of bandwith, delay, and loss rate. 
@@ -243,7 +297,7 @@ $ h2 iperf -c 10.0.0.4 -u -i 1
         > for some functions, we need import some module first.
         ```py
         '''
-        Remember to import the followin module first!
+        Remember to import the following module first!
         '''
         from mininet.util import dumpNodeConnections
         from mininet.cli  import CLI
@@ -328,8 +382,6 @@ $ h2 iperf -c 10.0.0.4 -u -i 1
 > TODO:
 > * Please replace "YOUR_NAME" and "YOUR_GITHUB_LINK" into yours
 
-* [YOUR_NAME](YOUR_GITHUB_LINK)
-* [David Lu](https://github.com/yungshenglu)
 * [allen880117](https://github.com/allen880117)
 
 ---
