@@ -17,16 +17,15 @@ In this lab, we are going to write a Python program which can generate a network
 ## Execution
 > TODO: 
 > * Describe how to execute your program 
-    >> Remember install Python and mininet package first.
-    >> ```bash
-    >> # Change the directory into /Network_Topology/src/  
-    >> $ cd /root/Network_Topology/src/
-    >> # Change to the executable mode of topology.py  
-    >> $ [sudo] chmod +x topology.py
-    >> # Run topology.py
-    >> $ [sudo] topology.py
-    >> ```
-
+> Remember install Python and mininet package first.
+> ```bash
+> # Change the directory into /Network_Topology/src/  
+> $ cd /root/Network_Topology/src/
+> # Change to the executable mode of topology.py  
+> $ [sudo] chmod +x topology.py
+> # Run topology.py
+> $ [sudo] topology.py
+> ```
 > * Show the screenshot of using iPerf command in Mininet
     >> ![Screenshot_iPerf](https://github.com/nctucn/lab2-allen880117/blob/master/screenshots/Screenshot_iPerf.png)
 ---
