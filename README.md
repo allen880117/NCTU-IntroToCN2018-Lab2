@@ -27,7 +27,7 @@ In this lab, we are going to write a Python program which can generate a network
 > $ [sudo] topology.py
 > ```
 > * Show the screenshot of using iPerf command in Mininet
-    >> ![Screenshot_iPerf](https://github.com/nctucn/lab2-allen880117/blob/master/screenshots/Screenshot_iPerf.png)
+> ![Screenshot_iPerf](https://github.com/nctucn/lab2-allen880117/blob/master/screenshots/Screenshot_iPerf.png)
 ---
 ## Description
 
